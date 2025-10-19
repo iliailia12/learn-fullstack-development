@@ -1,0 +1,132 @@
+:root {
+   --color-bg: #2d98da;
+   --color-card: rgb(244, 249, 253);
+   --color-white: rgb(255, 255, 255);
+   --color-light-black: rgba(0, 0, 0, 0.15);
+}
+
+html {
+   box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: 'Dancing Script', sans-serif;
+   font-size: 1.4rem;
+   font-weight: 400;
+   line-height: 1.7;
+   color: #111;
+   background-color: var(--color-bg);
+}
+
+/* Utility Classes */
+
+.heading-1 {
+   font-size: 2rem;
+}
+
+.heading-2 {
+   font-size: 2.5rem;
+   text-align: center;
+}
+
+.heading-1,
+.heading-2 {
+   font-weight: 700;
+   text-align: center;
+
+}
+
+.center-content {
+   display: grid;
+   place-items: center;
+}
+
+/* Main */
+
+.main {
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1em;
+   padding: 2em;
+}
+
+/* 3D Flip Card */
+
+.card {
+   width:300px;
+   height: 400px;
+   position: relative;
+   perspective: 1000px;
+}
+
+.first-page {
+   position: absolute;
+   height: inherit;
+   width: inherit;
+   top: 0;
+   left: 0;
+   transform: rotateY(0);
+   transform-origin: top left;
+   transform-style: preserve-3d;
+   transition: all 0.9s;
+   background-color: var(--color-white);
+   z-index: 10;
+}
+
+.card:hover .first-page {
+   transform: rotateY(-180deg);
+}
+
+.front-side,
+.back-side {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: inherit;
+   width: inherit;
+   backface-visibility: hidden;
+}
+
+.front-side {
+   box-shadow: 0 0px 10px var(--color-light-black);
+}
+
+.back-side {
+   background-color: var(--color-card);
+   box-shadow: -1px 0px 3px inset var(--color-light-black),
+               0 0 10px var(--color-light-black);
+   transform: rotateY(-180deg);
+}
+
+.card-image {
+   max-width: 100%;
+   object-fit: cover;
+}
+
+.second-page {
+   background-color: var(--color-card);
+   height: inherit;
+   width: inherit;
+   box-shadow: 1px 0 3px inset var(--color-light-black),
+               0 0 10px var(--color-light-black);
+   padding: 2em;
+   z-index: 1;
+}
+
+.card-content {
+   gap: 0.5em;
+   text-align: center;
+}
